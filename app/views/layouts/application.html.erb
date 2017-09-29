@@ -4,22 +4,34 @@
     <title>Twitter</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.css">
 
   </head>
 
   <body>
 
-    <%= render 'partials/jumbotron' %>
 
 
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class="grid">
-      <%= render 'partials/nav' %>
+  <div class="wrapper">
+      <div class="grid-cols">
+        <div class="cols">
+          <%= render 'partials/nav' %>
+        </div>
+        <div class="cols">
+          <%= image_tag("twitter-logo.png", class: "logo") %>
+        </div>
+      </div>
+      <%= render 'partials/jumbotron' %>
+
+      <p class="notice_ric"><%= notice %></p>
+      <p class="alert_ric"><%= alert %></p>
+
       <%= yield %>
+
     </div>
   </body>
 </html>

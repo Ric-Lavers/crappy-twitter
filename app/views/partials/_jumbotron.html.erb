@@ -1,9 +1,24 @@
-<div class="jumbotron">
-  <h1 class="display-3">Hello, world!</h1>
-  <p class="lead">This is the new and imporived version of twitter!</p>
-  <hr class="my-4">
-  <p>It reduces the clutter of the old 'popular'  twitter with 100% less Trump tweets</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
+<div class="jumbotron" style="padding-top:0;padding-bottom:0;">
+  <div class="display-grid">
+
+    <%55.times do |i|%>
+      <% if i%2==0 %>
+        <div class="box e"></div>
+      <% else%>
+        <div class="box o"></div>
+      <%end %>
+    <%end %>
+<!-- 
+    <%55.times do |i|%>
+      <% case  %>
+      <% when i<7%>
+        <% if i%2==0 %>
+          <div class="box a<%=i%>"></div>
+        <% else%>
+          <div class="box a<%=i%>"></div>
+        <%end %>
+      <%end %>
+    <%end %> -->
+
+  </div>
 </div>

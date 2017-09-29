@@ -16,6 +16,15 @@
 
 //= require jquery3
 //= require popper
+$(document).ready(function(){
+  $(".box").click(function(){
+    $(this).toggleClass("clear");
+    //  setTimeout(function(){ $(".o").toggleClass("clear"); }, 400);
+  });
+});
+
+
+
 
 $(document).ready(function(){
   $( ".logo" ).delay(6000).toggleClass("shrink");;

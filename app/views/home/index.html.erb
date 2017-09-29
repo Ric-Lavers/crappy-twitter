@@ -1,16 +1,17 @@
 
 
+<div class="cols">
 
-<%= image_tag("twitter-logo.png", class: "logo") %>
-<h2><%= @brand %></h2>
+  <h2><%= @brand %></h2>
 
-<ul>
-  <% @tweets.each { |tweet|%>
-    <li> <%= tweet.message %><br>
+  <ul>
+    <% @tweets.each { |tweet|%>
+      <li> <%= tweet.message %><br>
 
-    <%= time_ago_in_words(tweet.created_at) %>
- </li>
-  <% } %>
+      <%= time_ago_in_words(tweet.created_at) %>
+   </li>
+    <% } %>
 
 
-</ul>
+  </ul>
+</div>

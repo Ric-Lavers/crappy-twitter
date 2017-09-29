@@ -14,22 +14,65 @@
  *= require_self
 
  */
-@import "bootstrap";
-.grid{
+// @import "bootstrap";
+::-webkit-scrollbar {
+    display: none;
+}
+.wrapper{
+  padding:8px;
+}
+$more: 1;
+
+$boxW : 8*$more;
+$boxSide :calc(100vw/11);
+$gaps :  0px;
+.jumbotron{
+  background: image-url('jungle.jpg');
+  padding: $gaps, 0 !important;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.display-grid{
+  position: relative;
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns:  1fr 1fr 1fr;
-  border: 3px solid black;
+  grid-gap: $gaps ;
+  grid-template-columns:  repeat(11*$more, 1fr );
+  grid-template-rows:  repeat(5*$more, [row] $boxSide  );
+}
+.box{
+  color: #fff;
+}
+.e{
+  background-color: #0084b4;
+}
+
+.o{
+  background-color: #c0deed;
+}
+
+.clear{background-color: rgba(124,124,256,0.1);}
+.pink{background-color: rgb(256,124,124);}
+
+$barHeight : 80px;
+.grid-cols{
+  height: $barHeight;
+  display: grid;
+  // grid-gap: 12px;
+  grid-template-columns:  3fr 7fr;
   // grid-template-rows:repeat(5, [col] 75px );
 }
+.cols{
+  // border: 1px solid black;
+  background-color: #48ABE7;
+  font-size: 3em;
+  position: relative;
+}
+.cols:first-of-type{
+  background-color:white;
+}
 .logo{
-  height: 80px;
+  position: absolute;
+  right:0;
+  height: $barHeight;
   opacity: 10;
-}
-.shrink{
-  height: 50px;
-}
-.jumbotron{
-  background-color:#48ABE7;
-  color:white;
 }
