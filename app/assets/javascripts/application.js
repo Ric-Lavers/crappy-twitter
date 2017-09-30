@@ -29,65 +29,62 @@ $(document).ready(function(){
   $(".box").click(function(element){
     $(this).toggleClass("clear");
 
-    el = element.currentTarget.attributes.id;
+    // el = element.currentTarget.attributes.id;
     elIndex = $('div').index(this);
     gridIndex = elIndex - 5;
-    // console.log(countBoxs());
-    if(gridIndex%11 === 0){rowPos =  11} else{rowPos =  gridIndex%11};
+    // console.log(elIndex);
 
-    for (var i =rowPos; i<12; i++){
-      interval = i - rowPos + 1;
-      // console.log("interval is "+ interval);
-      offRowUp(i+1, interval);
-    };
-    // console.log("row position "+ rowPos);
-    countdown(rowPos)
+    if(gridIndex%11 === 0){colPos =  11} else{colPos =  gridIndex%11};
 
-                                        // function down(){
-                                        //   setTimeout(function(){
-                                        //     count = rowPos;
-                                        //     i = count;
-                                        //     if (i == 0){return}
-                                        //     else if (i >0) {
-                                        //       offRow(i);
-                                        //       down();
-                                        //       i -= 1;}
-                                        //     }, 100);
-                                        // };
-                                        // down()
-    // for (var i =rowPos; i>0; i--){
-    // // console.log(i);
-    //   offRow(i);
-    // };
+    rowPos =  Math.floor((gridIndex-0.01)/11);
+      console.log(rowPos);
+        countup(colPos, rowPos)
+        countdown(colPos, rowPos)
+        // for (var k =rowPos; k<5; k++){}
 
-    //  setTimeout(function(){ $(".o").toggleClass("clear"); }, 400);
+          // for (var i =colPos; i<12; i++){
+          //   interval = i - colPos + 1;
+          //   // console.log("interval is "+ interval);
+          //   offRowUp(i+1, interval);
+          // };
+          // console.log("row position "+ colPos);
+
+
   });
 });
 
-
-function offRowUp(j, interval){
-  setTimeout(function(){
-    // console.log("j is "+ j);
-    $("div#a" + j + ".box").toggleClass("clear");
-  }, 120 * interval);
+function countup(j,k){
+  abc = ['a','b','c','d','e','f']
+  kay = abc[k]
+  if(j<12)
+  {
+      j++;
+      setTimeout(function(){
+        $("div#"+kay + j + ".box").toggleClass("clear");
+        // console.log(kay+"__" + j);
+        countup(j,k)},60);
+        // console.log("j is "+j)
+  }
 }
 
-function countdown(j){
+function countdown(j,k){
+  abc = ['a','b','c','d','e','f']
+  kay = abc[k]
   if(j>0)
   {
       j--;
       setTimeout(function(){
-        $("div#a" + j + ".box").toggleClass("clear");
-        countdown(j)},120);
-        console.log("j is "+j)
+        $("div#" +kay+ j + ".box").toggleClass("clear");
+        countdown(j,k)},60);
+        // console.log("j is "+j)
   }
 }
 
-function offRowDown(j, interval){
+function offRowUp(j, interval){
   setTimeout(function(){
-    console.log("j is "+ j);
-    $("div#a" + j + ".box").toggleClass("clear");
-  }, 1000 * interval);
+    // console.log("j is "+ j);
+    $("div#" + j + ".box").toggleClass("clear");
+  }, 120 * interval);
 }
 
 function countBoxs(){
