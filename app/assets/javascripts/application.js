@@ -37,9 +37,13 @@ $(document).ready(function(){
     if(gridIndex%11 === 0){colPos =  11} else{colPos =  gridIndex%11};
 
     rowPos =  Math.floor((gridIndex-0.01)/11);
+
       console.log(rowPos);
-        countup(colPos, rowPos)
-        countdown(colPos, rowPos)
+        countright(colPos, rowPos);
+        countLeft(colPos, rowPos);
+        countDown(colPos, rowPos);
+        revealUp(colPos, rowPos);
+
         // for (var k =rowPos; k<5; k++){}
 
           // for (var i =colPos; i<12; i++){
@@ -52,30 +56,59 @@ $(document).ready(function(){
 
   });
 });
+function countDown(l,k){
+  abc = ['a','b','c','d','e']
+  kay = abc[k+1]
+  if(k<4)
+  {
+      k++;
+      setTimeout(function(){
+        $("div#"+kay +l+".box").toggleClass("clear");
+        // console.log(kay+"__" + l);
+        countDown(l,k)},60);
+  }
+}
+function revealUp(x,y){
 
-function countup(j,k){
+  abc = ['a','b','c','d','e']
+  say = abc[y-1]
+  // console.log("kay " + kay + "  k is "+k);
+  console.log("kay "+say  +" col "+x);
+  console.log("_________");
+  if(y>0)
+  {
+      y--;
+      // console.log("kay " + kay + "  k is "+k);
+      setTimeout(function(){
+        $("div#"+say +x+".box").toggleClass("clear");
+        console.log(say + x);
+        revealUp(x,y)},60);
+  }
+}
+
+function countright(j,p){
   abc = ['a','b','c','d','e','f']
-  kay = abc[k]
+  pee = abc[p]
   if(j<12)
   {
       j++;
       setTimeout(function(){
-        $("div#"+kay + j + ".box").toggleClass("clear");
+        $("div#"+pee + j + ".box").toggleClass("clear");
         // console.log(kay+"__" + j);
-        countup(j,k)},60);
+        countright(j,p)},60);
         // console.log("j is "+j)
   }
 }
 
-function countdown(j,k){
+function countLeft(m,n){
   abc = ['a','b','c','d','e','f']
-  kay = abc[k]
-  if(j>0)
+  nah = abc[n]
+  if(m>0)
   {
-      j--;
+      m--;
       setTimeout(function(){
-        $("div#" +kay+ j + ".box").toggleClass("clear");
-        countdown(j,k)},60);
+        $("div#" +nah+ m + ".box").toggleClass("clear");
+        countLeft(m,n)},60);
         // console.log("j is "+j)
   }
 }
