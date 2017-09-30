@@ -39,9 +39,9 @@ $(document).ready(function(){
     rowPos =  Math.floor((gridIndex-0.01)/11);
 
       console.log(rowPos);
-        countright(colPos, rowPos);
-        countLeft(colPos, rowPos);
-        countDown(colPos, rowPos);
+        revealRight(colPos, rowPos);
+        revealLeft(colPos, rowPos);
+        revealDown(colPos, rowPos);
         revealUp(colPos, rowPos);
 
         // for (var k =rowPos; k<5; k++){}
@@ -56,59 +56,53 @@ $(document).ready(function(){
 
   });
 });
-function countDown(l,k){
+function revealDown(l,k){
   abc = ['a','b','c','d','e']
   kay = abc[k+1]
   if(k<4)
   {
       k++;
       setTimeout(function(){
-        $("div#"+kay +l+".box").toggleClass("clear");
+        $("div#"+kay +l+".box").addClass("clear");
         // console.log(kay+"__" + l);
-        countDown(l,k)},60);
+        revealDown(l,k)},60);
   }
 }
 function revealUp(x,y){
-
   abc = ['a','b','c','d','e']
   say = abc[y-1]
-  // console.log("kay " + kay + "  k is "+k);
-  console.log("kay "+say  +" col "+x);
-  console.log("_________");
   if(y>0)
   {
       y--;
-      // console.log("kay " + kay + "  k is "+k);
       setTimeout(function(){
-        $("div#"+say +x+".box").toggleClass("clear");
-        console.log(say + x);
+        $("div#"+say +x+".box").addClass("clear");
         revealUp(x,y)},60);
   }
 }
 
-function countright(j,p){
-  abc = ['a','b','c','d','e','f']
+function revealRight(j,p){
+  abc = ['a','b','c','d','e']
   pee = abc[p]
   if(j<12)
   {
       j++;
       setTimeout(function(){
-        $("div#"+pee + j + ".box").toggleClass("clear");
+        $("div#"+pee + j + ".box").addClass("clear");
         // console.log(kay+"__" + j);
-        countright(j,p)},60);
+        revealRight(j,p)},60);
         // console.log("j is "+j)
   }
 }
 
-function countLeft(m,n){
+function revealLeft(m,n){
   abc = ['a','b','c','d','e','f']
   nah = abc[n]
   if(m>0)
   {
       m--;
       setTimeout(function(){
-        $("div#" +nah+ m + ".box").toggleClass("clear");
-        countLeft(m,n)},60);
+        $("div#" +nah+ m + ".box").addClass("clear");
+        revealLeft(m,n)},60);
         // console.log("j is "+j)
   }
 }
