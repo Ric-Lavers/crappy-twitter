@@ -1,24 +1,18 @@
 <div class="jumbotron" style="padding-top:0;padding-bottom:0;">
-  <div class="display-grid">
+  <div id ="jungletron" class="display-grid">
 
-    <%55.times do |i|%>
-      <% if i%2==0 %>
-        <div class="box e"></div>
-      <% else%>
-        <div class="box o"></div>
-      <%end %>
-    <%end %>
-<!-- 
-    <%55.times do |i|%>
-      <% case  %>
-      <% when i<7%>
-        <% if i%2==0 %>
-          <div class="box a<%=i%>"></div>
-        <% else%>
-          <div class="box a<%=i%>"></div>
-        <%end %>
-      <%end %>
-    <%end %> -->
+    <%
+    abc = ("a".."z").to_a
+    print abc
+    (0...5).each{|i|
+      (1..11).each{|j|%>
+        <div class="box" id="<%=abc[i]%><%=j%>"></div>
+    <%  }
+    }
+    %>
+
+
+
 
   </div>
 </div>

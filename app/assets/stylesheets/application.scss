@@ -25,7 +25,7 @@ $more: 1;
 
 $boxW : 8*$more;
 $boxSide :calc(100vw/11);
-$gaps :  0px;
+$gaps :  2px;
 .jumbotron{
   background: image-url('jungle.jpg');
   padding: $gaps, 0 !important;
@@ -41,6 +41,7 @@ $gaps :  0px;
 }
 .box{
   color: #fff;
+  background-color: #0084b4;
 }
 .e{
   background-color: #0084b4;
