@@ -28,28 +28,84 @@
 $(document).ready(function(){
   $(".box").click(function(element){
     $(this).toggleClass("clear");
-    // var txt = "";
-    // txt += "this: " + el;
+
     el = element.currentTarget.attributes.id;
-    grid = $("div#jungletron.display-grid");
-    //  $(".box").html(el.toString());
-    console.log(grid);
-    for (var i = 1; i<12; i++){
-      offRow(i);
+    elIndex = $('div').index(this);
+    gridIndex = elIndex - 5;
+    // console.log(countBoxs());
+    if(gridIndex%11 === 0){rowPos =  11} else{rowPos =  gridIndex%11};
+
+    for (var i =rowPos; i<12; i++){
+      interval = i - rowPos + 1;
+      // console.log("interval is "+ interval);
+      offRowUp(i+1, interval);
     };
+    // console.log("row position "+ rowPos);
+    countdown(rowPos)
+
+                                        // function down(){
+                                        //   setTimeout(function(){
+                                        //     count = rowPos;
+                                        //     i = count;
+                                        //     if (i == 0){return}
+                                        //     else if (i >0) {
+                                        //       offRow(i);
+                                        //       down();
+                                        //       i -= 1;}
+                                        //     }, 100);
+                                        // };
+                                        // down()
+    // for (var i =rowPos; i>0; i--){
+    // // console.log(i);
+    //   offRow(i);
+    // };
 
     //  setTimeout(function(){ $(".o").toggleClass("clear"); }, 400);
   });
 });
-function offRow(j){
+
+
+function offRowUp(j, interval){
   setTimeout(function(){
+    // console.log("j is "+ j);
     $("div#a" + j + ".box").toggleClass("clear");
-    // $("div#b2.box").html(i);
-  }, 40 * j);
+  }, 120 * interval);
 }
+
+function countdown(j){
+  if(j>0)
+  {
+      j--;
+      setTimeout(function(){
+        $("div#a" + j + ".box").toggleClass("clear");
+        countdown(j)},120);
+        console.log("j is "+j)
+  }
+}
+
+function offRowDown(j, interval){
+  setTimeout(function(){
+    console.log("j is "+ j);
+    $("div#a" + j + ".box").toggleClass("clear");
+  }, 1000 * interval);
+}
+
+function countBoxs(){
+  grid = document.getElementById("jungletron").childNodes;
+  count = 0
+  for (var i =0; i<grid.length; i++){
+    if (grid[i].nodeType !=3)
+    count += 1
+    ;
+  };
+  // console.log(count);
+  return count;
+}
+
+
 
 
 $(document).ready(function(){
   $( ".logo" ).delay(6000).toggleClass("shrink");;
-    console.log("WORKING");
+    // console.log("WORKING");
 });
