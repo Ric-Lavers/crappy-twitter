@@ -17,45 +17,71 @@
 //= require jquery3
 //= require popper
 
-//////////////first a
-// $(document).ready(function(){
-//   $(".box").click(function(){
-//     $(this).toggleClass("clear");
-//     //  setTimeout(function(){ $(".o").toggleClass("clear"); }, 400);
-//   });
-// });
+//// fades out the grid boxs in lines down, up, right and left of the click box.
+//##Known Issues.
+// needs to be refactored to reduce DRY
+// needs to not allow click whilst click function runs
 
 $(document).ready(function(){
-  $(".box").click(function(element){
-    $(this).toggleClass("clear");
+  $(".box").click(function(e){
+    // if ($(this).hasClass("clear")) {
+    //     return false;}
 
-    // el = element.currentTarget.attributes.id;
+    e.preventDefault();
+
+    $(this).toggleClass("clear");
     elIndex = $('div').index(this);
     gridIndex = elIndex - 5;
-    // console.log(elIndex);
 
     if(gridIndex%11 === 0){colPos =  11} else{colPos =  gridIndex%11};
-
     rowPos =  Math.floor((gridIndex-0.01)/11);
 
-      console.log(rowPos);
-        revealRight(colPos, rowPos);
-        revealLeft(colPos, rowPos);
-        revealDown(colPos, rowPos);
-        revealUp(colPos, rowPos);
-
-        // for (var k =rowPos; k<5; k++){}
-
-          // for (var i =colPos; i<12; i++){
-          //   interval = i - colPos + 1;
-          //   // console.log("interval is "+ interval);
-          //   offRowUp(i+1, interval);
-          // };
-          // console.log("row position "+ colPos);
+        // revealRight (colPos, rowPos);
+        // revealLeft  (colPos, rowPos);
+        revealRightLeft(colPos, rowPos);
+        revealUpDown   (colPos, rowPos);
+        // revealDown  (colPos, rowPos);
+        // revealUp    (colPos, rowPos);
 
 
   });
 });
+
+var stagger = 60;
+var fade    =900;
+
+function revealUpDown(l,k,s=k){
+  abc = ['a','b','c','d','e']
+  kay = abc[k+1]
+  say = abc[s-1]
+  if(k<4 || s>0)
+  {
+      s--;
+      k++;
+      setTimeout(function(){
+        $("div#"+kay +l+".box").fadeTo(fade,.01);
+        $("div#"+say +l+".box").fadeTo(fade,.01);
+        // console.log(kay+"__" + l);
+        revealUpDown(l,k,s)},stagger);
+  }
+}
+function revealRightLeft(j,p,i=j){
+  abc = ['a','b','c','d','e']
+  pee = abc[p]
+  if(j<12 || i>0)
+  {
+      i--;
+      j++;
+      setTimeout(function(){
+        $("div#"+pee + j + ".box").fadeTo(fade,.01);
+        $("div#"+pee + i + ".box").fadeTo(fade,.01);
+        // console.log(kay+"__" + j);
+        revealRightLeft(j,p,i)},stagger);
+        // console.log("j is "+j)
+  }
+}
+
+
 function revealDown(l,k){
   abc = ['a','b','c','d','e']
   kay = abc[k+1]
@@ -63,9 +89,9 @@ function revealDown(l,k){
   {
       k++;
       setTimeout(function(){
-        $("div#"+kay +l+".box").addClass("clear");
+        $("div#"+kay +l+".box").fadeTo(900,.01);
         // console.log(kay+"__" + l);
-        revealDown(l,k)},60);
+        revealDown(l,k)},stagger);
   }
 }
 function revealUp(x,y){
@@ -75,8 +101,8 @@ function revealUp(x,y){
   {
       y--;
       setTimeout(function(){
-        $("div#"+say +x+".box").addClass("clear");
-        revealUp(x,y)},60);
+        $("div#"+say +x+".box").fadeTo(900,.01);
+        revealUp(x,y)},stagger);
   }
 }
 
@@ -87,13 +113,12 @@ function revealRight(j,p){
   {
       j++;
       setTimeout(function(){
-        $("div#"+pee + j + ".box").addClass("clear");
+        $("div#"+pee + j + ".box").fadeTo(900,.01);
         // console.log(kay+"__" + j);
-        revealRight(j,p)},60);
+        revealRight(j,p)},stagger);
         // console.log("j is "+j)
   }
 }
-
 function revealLeft(m,n){
   abc = ['a','b','c','d','e','f']
   nah = abc[n]
@@ -101,32 +126,32 @@ function revealLeft(m,n){
   {
       m--;
       setTimeout(function(){
-        $("div#" +nah+ m + ".box").addClass("clear");
-        revealLeft(m,n)},60);
+        $("div#" +nah+ m + ".box").fadeTo(900,.01);
+        revealLeft(m,n)},stagger);
         // console.log("j is "+j)
   }
 }
 
-function offRowUp(j, interval){
-  setTimeout(function(){
-    // console.log("j is "+ j);
-    $("div#" + j + ".box").toggleClass("clear");
-  }, 120 * interval);
-}
-
-function countBoxs(){
-  grid = document.getElementById("jungletron").childNodes;
-  count = 0
-  for (var i =0; i<grid.length; i++){
-    if (grid[i].nodeType !=3)
-    count += 1
-    ;
-  };
-  // console.log(count);
-  return count;
-}
 
 
+
+  display = document.getElementById("a3");
+  console.log(display);
+
+
+      // function countBoxs(){
+      //   grid = document.getElementById("jungletron").childNodes;
+      //   count = 0
+      //   for (var i =0; i<grid.length; i++){
+      //     if (grid[i].nodeType !=3)
+      //     count += 1
+      //     ;
+      //   };
+      //   console.log(count);
+      //   return count;
+      // }
+
+// countBoxs()
 
 
 $(document).ready(function(){
